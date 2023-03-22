@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JRadioButton;
 
 public class VentanaPrincipal {
 
@@ -95,7 +96,7 @@ public class VentanaPrincipal {
 		frmRegistroBetaDiablo.getContentPane().add(lblNewLabel_4);
 		
 		JButton btnNewButton = new JButton("Conectate");
-		btnNewButton.setBounds(201, 271, 89, 23);
+		btnNewButton.setBounds(201, 288, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login frame = new Login();
@@ -107,13 +108,13 @@ public class VentanaPrincipal {
 		frmRegistroBetaDiablo.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrate");
-		btnNewButton_1.setBounds(201, 212, 89, 23);
+		btnNewButton_1.setBounds(201, 233, 89, 23);
 		btnNewButton_1.setForeground(Color.BLACK);
 		btnNewButton_1.setBackground(Color.RED);
 		btnNewButton_1.addActionListener(new ActionListener() {			
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(passwordField.getText().equals(passwordField_1.getText()) && !txtUsuario.getText().isEmpty() && !txtExamplemailcom.getText().isEmpty() && !passwordField.getText().isEmpty() && !passwordField_1.getText().isEmpty()) {
+				if(passwordField.getText().equals(passwordField_1.getText()) && !txtUsuario.getText().isEmpty() && !txtExamplemailcom.getText().isEmpty() && !passwordField.getText().isEmpty() && !passwordField_1.getText().isEmpty() && txtExamplemailcom.getText().contains("@") && txtExamplemailcom.getText().contains(".")) {
 					usuarios.add(txtUsuario.getText());
 					contraseñas.add(passwordField.getText());	
 					emails.add(txtExamplemailcom.getText());
@@ -133,6 +134,10 @@ public class VentanaPrincipal {
 						txtUsuario.setBackground(Color.RED);
 					}else if(txtExamplemailcom.getText().isEmpty()){
 						JOptionPane.showMessageDialog(frmRegistroBetaDiablo,"Email vacio","ERROR",JOptionPane.WARNING_MESSAGE);
+						txtExamplemailcom.setBackground(Color.RED);
+						txtExamplemailcom.setForeground(Color.BLACK);
+					}else if(!txtExamplemailcom.getText().contains("@") && !txtExamplemailcom.getText().contains(".")){
+						JOptionPane.showMessageDialog(frmRegistroBetaDiablo,"Email no válido","ERROR",JOptionPane.WARNING_MESSAGE);
 						txtExamplemailcom.setBackground(Color.RED);
 						txtExamplemailcom.setForeground(Color.BLACK);
 					}else {
@@ -178,7 +183,7 @@ public class VentanaPrincipal {
 		frmRegistroBetaDiablo.getContentPane().add(passwordField_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("¿Ya tienes una cuenta?");
-		lblNewLabel_5.setBounds(188, 246, 121, 14);
+		lblNewLabel_5.setBounds(188, 263, 121, 14);
 		lblNewLabel_5.setForeground(Color.RED);
 		frmRegistroBetaDiablo.getContentPane().add(lblNewLabel_5);
 		
@@ -186,5 +191,9 @@ public class VentanaPrincipal {
 		lblNewLabel_6.setBounds(0, 0, 495, 511);
 		lblNewLabel_6.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/Diablo IV.jpg")));
 		frmRegistroBetaDiablo.getContentPane().add(lblNewLabel_6);
+		
+		JRadioButton radioButton = new JRadioButton("New radio button");
+		radioButton.setBounds(296, 196, 109, 23);
+		frmRegistroBetaDiablo.getContentPane().add(radioButton);
 	}
 }
