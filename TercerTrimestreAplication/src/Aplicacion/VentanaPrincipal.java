@@ -27,13 +27,8 @@ public class VentanaPrincipal {
 	private JTextField txtExamplemailcom;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
-	static ArrayList<String> usuarios=new ArrayList<String>();
-	static ArrayList<String> contraseñas=new ArrayList<String>();;
-	static ArrayList<String> emails=new ArrayList<String>();;
+	private Usuario user=new Usuario();
 	
-	
-	
-
 	/**
 	 * Launch the application.
 	 */
@@ -136,11 +131,14 @@ public class VentanaPrincipal {
 		btnNewButton_1.addActionListener(new ActionListener() {			
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
+				String icono = "/img/icono.png";
+                ImageIcon icon = new ImageIcon(getClass().getResource(icono));
+
 				if(passwordField.getText().equals(passwordField_1.getText()) && !txtUsuario.getText().isEmpty() && !txtExamplemailcom.getText().isEmpty() && !passwordField.getText().isEmpty() && !passwordField_1.getText().isEmpty() && txtExamplemailcom.getText().contains("@") && txtExamplemailcom.getText().contains(".")) {
-					usuarios.add(txtUsuario.getText());
-					contraseñas.add(passwordField.getText());	
-					emails.add(txtExamplemailcom.getText());
+					JOptionPane.showMessageDialog(frmRegistroBetaDiablo, "Te has registrado correctamente", "Registro correcto",
+                            JOptionPane.INFORMATION_MESSAGE,icon);
 					VentanaBienvenida frame = new VentanaBienvenida();
+					user.registrar(txtUsuario.getText(), passwordField.getText(), txtExamplemailcom.getText());
 					frame.setVisible(true);
 					frmRegistroBetaDiablo.setVisible(false);	
 				}else {

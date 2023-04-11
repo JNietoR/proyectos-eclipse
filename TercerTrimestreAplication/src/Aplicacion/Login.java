@@ -25,6 +25,7 @@ public class Login extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	static Login loginV;
+	private Usuario user = new Usuario();
 	
 
 	/**
@@ -57,7 +58,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Conectate");
-		btnNewButton.addActionListener(e -> {
+		btnNewButton.addActionListener(e -> {			
 				if(passwordField.getText().isEmpty() && textField.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane,"Por favor, introduce los datos del login","Formulario vacio",JOptionPane.ERROR_MESSAGE);
 					textField.setForeground(Color.BLACK);
@@ -79,7 +80,6 @@ public class Login extends JFrame {
 						passwordField.setBackground(Color.RED);
 					}
 				}
-			
 		});
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Mostrar contraseña");
@@ -127,7 +127,7 @@ public class Login extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/img/Diablo IV.jpg")));
+		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/img/login.jpg")));
 		lblNewLabel_2.setBounds(0, 0, 485, 462);
 		contentPane.add(lblNewLabel_2);
 	}

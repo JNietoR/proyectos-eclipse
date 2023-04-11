@@ -44,20 +44,16 @@ public class VentanaBienvenida extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("BIENVENIDO");
+		JLabel lblNewLabel_1 = new JLabel("BIENVENIDO A LA BETA");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1.setForeground(Color.RED);
-		lblNewLabel_1.setBounds(176, 156, 160, 116);
+		lblNewLabel_1.setBounds(124, 0, 228, 81);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(VentanaBienvenida.class.getResource("/img/Diablo IV.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(VentanaBienvenida.class.getResource("/img/bienvenida.jpg")));
 		lblNewLabel.setBounds(0, 0, 484, 461);
 		contentPane.add(lblNewLabel);
-		
-		JLabel label = new JLabel("New label");
-		label.setBounds(66, 38, 46, 14);
-		contentPane.add(label);
 	}
 
 }
