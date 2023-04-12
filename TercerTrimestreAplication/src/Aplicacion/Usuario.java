@@ -141,7 +141,7 @@ public class Usuario {
         int resultado = 0;
         try {
             cn = conexion.conectar();
-            PreparedStatement stm = cn.prepareStatement("SELECT * FROM usuario WHERE USUARIO = ? AND CONTRASEÑA= ? ");
+            PreparedStatement stm = cn.prepareStatement("SELECT * FROM usuarios WHERE USUARIO = ? AND CONTRASEÑA= ? ");
             stm.setString(1, usuario);
             stm.setString(2, contraseña);
 

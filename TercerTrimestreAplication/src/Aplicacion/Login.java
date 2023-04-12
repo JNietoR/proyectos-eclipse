@@ -1,23 +1,25 @@
 package Aplicacion;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
+import java.awt.EventQueue;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class Login extends JFrame {
 
@@ -58,7 +60,17 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Conectate");
-		btnNewButton.addActionListener(e -> {			
+		btnNewButton.addActionListener(e -> {
+			String icono = "/img/icono.png";
+            ImageIcon icon = new ImageIcon(getClass().getResource(icono));
+            int respuesta = JOptionPane.showOptionDialog(null,
+                    "¿Desea iniciar sesión?",
+                    "Inicio de Sesión",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new Object[]{"Sí", "No"},
+                    "Sí");
 				if(passwordField.getText().isEmpty() && textField.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane,"Por favor, introduce los datos del login","Formulario vacio",JOptionPane.ERROR_MESSAGE);
 					textField.setForeground(Color.BLACK);
@@ -66,16 +78,15 @@ public class Login extends JFrame {
 					passwordField.setForeground(Color.BLACK);
 					passwordField.setBackground(Color.RED);
 				}else {
-					if(!passwordField.getText().isEmpty() && !textField.getText().isEmpty()) {
+					if(user.comprobarDatos(textField.getText(), passwordField.getText()) == 1) {	
+						JOptionPane.showMessageDialog(contentPane, "Te has logeado correctamente", "Login correcto",JOptionPane.INFORMATION_MESSAGE,icon);
 						VentanaBienvenida frame = new VentanaBienvenida();
 						frame.setVisible(true);
 						loginV.setVisible(false);
-					}else if(textField.getText().isEmpty()){
-						JOptionPane.showMessageDialog(contentPane,"Introduce un usuario","Usuario vacio",JOptionPane.WARNING_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(contentPane,"Usuario / contraseña incorrecta","Datos erroneos",JOptionPane.ERROR_MESSAGE);
 						textField.setForeground(Color.BLACK);
 						textField.setBackground(Color.RED);
-					}else {
-						JOptionPane.showMessageDialog(contentPane,"Introduce una contraseña","Contraseña vacia",JOptionPane.WARNING_MESSAGE);
 						passwordField.setForeground(Color.BLACK);
 						passwordField.setBackground(Color.RED);
 					}
@@ -88,15 +99,38 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (rdbtnNewRadioButton.isSelected()==true) {
-					passwordField.setEchoChar((char) 0);
+						passwordField.setEchoChar((char) 0);
 					}else {
-					passwordField.setEchoChar('●');      
+						passwordField.setEchoChar('●');      
 					} 
 			}
 		});
+		
+		JButton btnNewButton_1 = new JButton("Adjunta un archivo");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+                // Hacemos que aparezca un fichero por defecto
+                fileChooser.setSelectedFile(new File("fichero.txt"));
+                // Cambiamos el título de la ventana
+                fileChooser.setDialogTitle("Selecciona un fichero");
+                // Agregamos dos filtros al selecctor de ficheros
+                // Mostramos la ventana de seleccionar el fichero
+                int resultado = fileChooser.showOpenDialog(null);
+                // Si se ha seleccionado un fichero, si se pulsa cancelar no se ejecuta
+                if (resultado == JFileChooser.APPROVE_OPTION){
+	                // Obtenemos la ruta del fichero seleccionado
+	                String ruta = fileChooser.getSelectedFile().getAbsolutePath();
+                }
+			}
+		});
+		btnNewButton_1.setForeground(Color.BLACK);
+		btnNewButton_1.setBackground(Color.RED);
+		btnNewButton_1.setBounds(228, 193, 140, 23);
+		contentPane.add(btnNewButton_1);
 		rdbtnNewRadioButton.setForeground(Color.RED);
 		rdbtnNewRadioButton.setBackground(SystemColor.desktop);
-		rdbtnNewRadioButton.setBounds(228, 199, 140, 23);
+		rdbtnNewRadioButton.setBounds(228, 163, 140, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBackground(Color.RED);
@@ -113,7 +147,7 @@ public class Login extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setForeground(Color.RED);
 		passwordField.setBackground(Color.BLACK);
-		passwordField.setBounds(228, 163, 140, 20);
+		passwordField.setBounds(228, 136, 140, 20);
 		contentPane.add(passwordField);
 		
 		JLabel lblNewLabel = new JLabel("Usuario");
@@ -123,7 +157,7 @@ public class Login extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Contraseña");
 		lblNewLabel_1.setForeground(Color.RED);
-		lblNewLabel_1.setBounds(119, 166, 75, 14);
+		lblNewLabel_1.setBounds(119, 139, 75, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");

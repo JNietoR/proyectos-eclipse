@@ -116,9 +116,9 @@ public class VentanaPrincipal {
 		btnNewButton.setBounds(188, 317, 102, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login frame = new Login();
-				frame.setVisible(true);
-				frmRegistroBetaDiablo.setVisible(false);
+					Login frame = new Login();
+					frame.setVisible(true);
+					frmRegistroBetaDiablo.setVisible(false);
 			}
 		});
 		btnNewButton.setBackground(Color.RED);
