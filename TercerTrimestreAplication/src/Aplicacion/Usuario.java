@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class Usuario {
 	private Conexion conexion = new Conexion();
 	private Connection cn = null;
@@ -171,6 +174,48 @@ public class Usuario {
         }
         return resultado;
     }
-	
+	public DefaultTableModel rellenarTabla() {
+		String[] columnas = {"TAG", "Usuario", "Contraseña","Email"};
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+		try {
+			String consulta = "SELECT TAG, Usuario, Contraseña, Email FROM usuarios";
+			cn = conexion.conectar();
+			PreparedStatement stm2 = cn.prepareStatement(consulta);
+			rs =stm2.executeQuery(consulta);
+			modelo.addRow(columnas);
+			while (rs.next()) {
+			    int TAG = rs.getInt("TAG");
+			    String Usuario = rs.getString("Usuario");
+			    String Contraseña = rs.getString("Contraseña");
+			    String Email = rs.getString("Email");
+			    Object[] fila = {TAG, Usuario, Contraseña,Email};
+			    
+			    modelo.addRow(fila);
+			}
+			
+		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if (rs!= null) {
+					rs.close();
+				}
+				
+				if (stm != null) {
+					stm.close();
+				}
+				
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return modelo;
+	}
 	
 }
