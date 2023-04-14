@@ -13,7 +13,10 @@ import java.awt.Font;
 public class VentanaBienvenida extends JFrame {
 
 	private JPanel contentPane;
-	static VentanaBienvenida bienvenida;
+	static Login loginV = new Login();
+	static CambiarContraseña cambiarcontra = new CambiarContraseña();
+	static ModificarDatos modificarD = new ModificarDatos();
+	static VentanaBienvenida bienvenida = new VentanaBienvenida();
 
 	/**
 	 * Launch the application.

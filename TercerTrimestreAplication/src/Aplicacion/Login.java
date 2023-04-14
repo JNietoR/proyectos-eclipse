@@ -26,7 +26,10 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	static Login loginV;
+	static Login loginV = new Login();
+	static CambiarContraseña cambiarcontra = new CambiarContraseña();
+	static ModificarDatos modificarD = new ModificarDatos();
+	static VentanaBienvenida bienvenida = new VentanaBienvenida();
 	private Usuario user = new Usuario();
 	
 
@@ -124,6 +127,25 @@ public class Login extends JFrame {
                 }
 			}
 		});
+		
+		JButton btnReestablecer = new JButton("Reestablecer");
+		btnReestablecer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CambiarContraseña contra = new CambiarContraseña();
+				contra.setVisible(true);
+				loginV.setVisible(false);
+			}
+		});
+		btnReestablecer.setForeground(Color.BLACK);
+		btnReestablecer.setBackground(Color.RED);
+		btnReestablecer.setBounds(184, 323, 113, 23);
+		contentPane.add(btnReestablecer);
+		
+		JLabel lblNewLabel_5 = new JLabel("¿No recuerdas la contraseña?");
+		lblNewLabel_5.setForeground(Color.RED);
+		lblNewLabel_5.setBounds(145, 298, 196, 14);
+		contentPane.add(lblNewLabel_5);
 		btnNewButton_1.setForeground(Color.BLACK);
 		btnNewButton_1.setBackground(Color.RED);
 		btnNewButton_1.setBounds(228, 193, 140, 23);

@@ -28,6 +28,10 @@ public class VentanaPrincipal {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private Usuario user=new Usuario();
+	static Login loginV = new Login();
+	static CambiarContraseña cambiarcontra = new CambiarContraseña();
+	static ModificarDatos modificarD = new ModificarDatos();
+	static VentanaBienvenida bienvenida = new VentanaBienvenida();
 	
 	/**
 	 * Launch the application.

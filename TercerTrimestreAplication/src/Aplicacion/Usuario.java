@@ -45,14 +45,13 @@ public class Usuario {
 		
 	}
 	
-	public void modificarDatos(String Usuario, String Contraseña, String Email) {
+	public void modificarDatos(String Contraseña, String Email, String Usuario) {
 		try {
 			cn = conexion.conectar();
-			PreparedStatement stm2 = cn.prepareStatement("UPDATE usuarios SET Usuario = ?, SET Contraseña = ?, SET Email = ?  WHERE Usuario = ?");
-			stm2.setString(1, Usuario);
-			stm2.setString(2, Contraseña);
-			stm2.setString(3, Email);
-			stm2.setString(4, Usuario);
+			PreparedStatement stm2 = cn.prepareStatement(" UPDATE usuarios SET Contraseña = ?, Email = ?  WHERE Usuario = ? ");
+			stm2.setString(1, Contraseña);
+			stm2.setString(2, Email);
+			stm2.setString(3, Usuario);
 
 			stm2.executeUpdate();
 			
@@ -82,7 +81,7 @@ public class Usuario {
 			cn = conexion.conectar();
 			PreparedStatement stm2 = cn.prepareStatement("UPDATE usuarios SET Contraseña = ? WHERE Usuario = ?");
 			stm2.setString(1, Contraseña);
-			stm2.setString(1, Usuario);
+			stm2.setString(2, Usuario);
 
 			stm2.executeUpdate();
 			
