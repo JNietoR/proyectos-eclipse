@@ -88,6 +88,7 @@ public class Usuario {
 
 			stm2.executeUpdate();
 			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
