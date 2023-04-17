@@ -66,10 +66,16 @@ public class TablaUsuarios extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				user.eliminarUsuario(textField.getText());
-				table.setModel(user.rellenarTabla());
-				JOptionPane.showMessageDialog(contentPane, "Usuario "+textField.getText()+" eliminado correctamente", "Usuario eliminado",
-                        JOptionPane.INFORMATION_MESSAGE,icon);
+				if(user.comprobarDatos(textField.getText(), passwordField.getText()) == 1) {
+					user.eliminarUsuario(textField.getText());
+					table.setModel(user.rellenarTabla());
+					JOptionPane.showMessageDialog(contentPane, "Usuario "+textField.getText()+" eliminado correctamente", "Usuario eliminado",
+	                        JOptionPane.INFORMATION_MESSAGE,icon);
+				}else {
+					JOptionPane.showMessageDialog(contentPane,"No Existe un usuario "+textField.getText()+" con contraseña "+passwordField.getText(),"Usuario y contraseña no coinciden",JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
 			}
 		});
 		
@@ -87,19 +93,19 @@ public class TablaUsuarios extends JFrame {
 		});
 		btnNewButton_1_1.setForeground(Color.BLACK);
 		btnNewButton_1_1.setBackground(Color.RED);
-		btnNewButton_1_1.setBounds(220, 126, 107, 23);
+		btnNewButton_1_1.setBounds(214, 126, 113, 23);
 		contentPane.add(btnNewButton_1_1);
 		
 		passwordField = new JPasswordField();
 		passwordField.setForeground(Color.RED);
 		passwordField.setBackground(Color.BLACK);
-		passwordField.setBounds(110, 127, 100, 20);
+		passwordField.setBounds(108, 127, 96, 20);
 		contentPane.add(passwordField);
 		
 		lblNewLabel = new JLabel("Contraseña");
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(122, 102, 112, 14);
+		lblNewLabel.setBounds(119, 102, 112, 14);
 		contentPane.add(lblNewLabel);
 		btnNewButton_1.setForeground(Color.BLACK);
 		btnNewButton_1.setBackground(Color.RED);
@@ -111,13 +117,13 @@ public class TablaUsuarios extends JFrame {
 		textField.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		textField.setColumns(10);
 		textField.setBackground(Color.BLACK);
-		textField.setBounds(10, 127, 94, 20);
+		textField.setBounds(10, 127, 88, 20);
 		contentPane.add(textField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuario");
 		lblNewLabel_1.setForeground(Color.RED);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(30, 102, 64, 14);
+		lblNewLabel_1.setBounds(29, 102, 64, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		table = new JTable();
@@ -138,4 +144,5 @@ public class TablaUsuarios extends JFrame {
 	    
 	}
 }
+
 
