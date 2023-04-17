@@ -127,6 +127,8 @@ public class TablaUsuarios extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		table = new JTable();
+		table.setForeground(Color.RED);
+		table.setBackground(Color.BLACK);
 		table.setModel(user.rellenarTabla());
 		table.setBounds(10, 158, 415, 179);
 		contentPane.add(table);
